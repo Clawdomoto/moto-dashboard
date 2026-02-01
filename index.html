@@ -45,7 +45,7 @@
     <div class="grid grid-cols-4 gap-4 mb-8">
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Active Tasks</div>
-        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">2</div>
+        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">1</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Completed Today</div>
@@ -91,16 +91,9 @@
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">In Progress</h2>
-          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">2</span>
+          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">1</span>
         </div>
         <div class="space-y-3" id="col-progress">
-          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Blog Post #3</div>
-            <div class="text-xs text-neutral-500">How Much Should an SMB Spend on Marketing?</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Content</span>
-            </div>
-          </div>
           <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
             <div class="text-sm font-medium text-neutral-900 mb-1">Video PRD Phase 1</div>
             <div class="text-xs text-neutral-500">Blocked: Waiting for Replicate API token</div>
@@ -116,9 +109,17 @@
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">Review</h2>
-          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full" id="count-review">7</span>
+          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full" id="count-review">8</span>
         </div>
         <div class="space-y-3" id="col-review">
+          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Blog Post #3</div>
+            <div class="text-xs text-neutral-500">SMB Marketing Budget Guide</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Content</span>
+              <span class="text-xs text-amber-600">Awaiting B</span>
+            </div>
+          </div>
           <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
             <div class="text-sm font-medium text-neutral-900 mb-1">Blog Post #2</div>
             <div class="text-xs text-neutral-500">AI Marketing: What Actually Works in 2026</div>
@@ -234,17 +235,17 @@
       <h2 class="font-semibold text-neutral-900 mb-4">Recent Activity</h2>
       <div class="space-y-3 text-sm" id="activity-log">
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
-          <span class="text-accent">●</span>
+          <span class="text-emerald-500">●</span>
           <div>
-            <div class="text-neutral-900">Blog Post #3 — How Much Should SMB Spend on Marketing?</div>
-            <div class="text-xs text-neutral-500">In progress</div>
+            <div class="text-neutral-900">3 blog posts complete — Q1 content calendar started</div>
+            <div class="text-xs text-neutral-500">Just now</div>
           </div>
         </div>
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
           <span class="text-emerald-500">●</span>
           <div>
-            <div class="text-neutral-900">Blog Post #2 complete — AI Marketing 2026</div>
-            <div class="text-xs text-neutral-500">Just now</div>
+            <div class="text-neutral-900">Sales one-pager complete — ready for Mac</div>
+            <div class="text-xs text-neutral-500">15 min ago</div>
           </div>
         </div>
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
