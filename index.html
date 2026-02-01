@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moto Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: '#E07A5F',
+            'accent-hover': '#C96A52',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+  </style>
+</head>
+<body class="bg-neutral-50 min-h-screen">
+  <!-- Header -->
+  <header class="bg-white border-b border-neutral-200 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">🤖</span>
+        <h1 class="text-xl font-semibold text-neutral-900">Moto Dashboard</h1>
+      </div>
+      <div class="flex items-center gap-4 text-sm text-neutral-500">
+        <span id="last-updated">Last updated: --</span>
+        <button onclick="refreshData()" class="px-3 py-1.5 bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors">
+          Refresh
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-8">
+    <!-- Stats Row -->
+    <div class="grid grid-cols-4 gap-4 mb-8">
+      <div class="bg-white rounded-xl border border-neutral-200 p-4">
+        <div class="text-sm text-neutral-500 mb-1">Active Tasks</div>
+        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">3</div>
+      </div>
+      <div class="bg-white rounded-xl border border-neutral-200 p-4">
+        <div class="text-sm text-neutral-500 mb-1">Completed Today</div>
+        <div class="text-2xl font-semibold text-emerald-600" id="stat-completed">7</div>
+      </div>
+      <div class="bg-white rounded-xl border border-neutral-200 p-4">
+        <div class="text-sm text-neutral-500 mb-1">In Review</div>
+        <div class="text-2xl font-semibold text-amber-600" id="stat-review">2</div>
+      </div>
+      <div class="bg-white rounded-xl border border-neutral-200 p-4">
+        <div class="text-sm text-neutral-500 mb-1">Blocked</div>
+        <div class="text-2xl font-semibold text-red-600" id="stat-blocked">0</div>
+      </div>
+    </div>
+
+    <!-- Kanban Board -->
+    <div class="grid grid-cols-4 gap-6">
+      <!-- Backlog -->
+      <div class="bg-white rounded-xl border border-neutral-200 p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-semibold text-neutral-900">Backlog</h2>
+          <span class="text-xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded-full" id="count-backlog">2</span>
+        </div>
+        <div class="space-y-3" id="col-backlog">
+          <div class="p-3 bg-neutral-50 rounded-lg border border-neutral-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Sales one-pager</div>
+            <div class="text-xs text-neutral-500">Create leave-behind for boutique visits</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Sales</span>
+            </div>
+          </div>
+          <div class="p-3 bg-neutral-50 rounded-lg border border-neutral-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Demo video</div>
+            <div class="text-xs text-neutral-500">Record 2-min async demo for prospects</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Sales</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- In Progress -->
+      <div class="bg-white rounded-xl border border-neutral-200 p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-semibold text-neutral-900">In Progress</h2>
+          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">3</span>
+        </div>
+        <div class="space-y-3" id="col-progress">
+          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Design System Implementation</div>
+            <div class="text-xs text-neutral-500">Claude Code migrating 388 color refs</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
+              <span class="text-xs text-neutral-400">~60%</span>
+            </div>
+          </div>
+          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Fix Brief → Calendar flow</div>
+            <div class="text-xs text-neutral-500">Add "Schedule to Calendar" on approved assets</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
+            </div>
+          </div>
+          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Build verification</div>
+            <div class="text-xs text-neutral-500">Run npm build after design system changes</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review -->
+      <div class="bg-white rounded-xl border border-neutral-200 p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-semibold text-neutral-900">Review</h2>
+          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full" id="count-review">2</span>
+        </div>
+        <div class="space-y-3" id="col-review">
+          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">DESIGN_SYSTEM.md</div>
+            <div class="text-xs text-neutral-500">Design tokens spec ready for review</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
+              <span class="text-xs text-amber-600">Awaiting B</span>
+            </div>
+          </div>
+          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">SALES_STRATEGY.md</div>
+            <div class="text-xs text-neutral-500">$1M ARR playbook ready for review</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Sales</span>
+              <span class="text-xs text-amber-600">Awaiting B</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Done -->
+      <div class="bg-white rounded-xl border border-neutral-200 p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="font-semibold text-neutral-900">Done</h2>
+          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">7</span>
+        </div>
+        <div class="space-y-3" id="col-done">
+          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Identity setup</div>
+            <div class="text-xs text-neutral-500">SOUL.md, IDENTITY.md, USER.md</div>
+            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
+          </div>
+          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">GitHub access</div>
+            <div class="text-xs text-neutral-500">Clawdomoto account configured</div>
+            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
+          </div>
+          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">ElevenLabs TTS</div>
+            <div class="text-xs text-neutral-500">Voice configured and tested</div>
+            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
+          </div>
+          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Platform audit</div>
+            <div class="text-xs text-neutral-500">Vael dashboard codebase review</div>
+            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
+          </div>
+          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Sub-agent deployment</div>
+            <div class="text-xs text-neutral-500">5 agents: NavBar, Buttons, Calendar, ClientNav, Cards</div>
+            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity Log -->
+    <div class="mt-8 bg-white rounded-xl border border-neutral-200 p-6">
+      <h2 class="font-semibold text-neutral-900 mb-4">Recent Activity</h2>
+      <div class="space-y-3 text-sm" id="activity-log">
+        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
+          <span class="text-emerald-500">●</span>
+          <div>
+            <div class="text-neutral-900">Asset cards updated to new design system</div>
+            <div class="text-xs text-neutral-500">2 minutes ago</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
+          <span class="text-emerald-500">●</span>
+          <div>
+            <div class="text-neutral-900">ClientNav tabs migrated to accent color</div>
+            <div class="text-xs text-neutral-500">3 minutes ago</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
+          <span class="text-emerald-500">●</span>
+          <div>
+            <div class="text-neutral-900">Calendar components updated (35 replacements)</div>
+            <div class="text-xs text-neutral-500">3 minutes ago</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
+          <span class="text-emerald-500">●</span>
+          <div>
+            <div class="text-neutral-900">Sales strategy doc created</div>
+            <div class="text-xs text-neutral-500">5 minutes ago</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-accent">●</span>
+          <div>
+            <div class="text-neutral-900">Claude Code processing 388 color migrations</div>
+            <div class="text-xs text-neutral-500">In progress</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-200 mt-12 py-6 text-center text-sm text-neutral-500">
+    <p>Moto 🤖 — Chief Product & Technology Officer, Vael Creative</p>
+  </footer>
+
+  <script>
+    function refreshData() {
+      document.getElementById('last-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+    }
+    refreshData();
+  </script>
+</body>
+</html>
