@@ -45,11 +45,11 @@
     <div class="grid grid-cols-4 gap-4 mb-8">
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Active Tasks</div>
-        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">3</div>
+        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">1</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Completed Today</div>
-        <div class="text-2xl font-semibold text-emerald-600" id="stat-completed">7</div>
+        <div class="text-2xl font-semibold text-emerald-600" id="stat-completed">9</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">In Review</div>
@@ -91,27 +91,12 @@
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">In Progress</h2>
-          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">3</span>
+          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">1</span>
         </div>
         <div class="space-y-3" id="col-progress">
           <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Design System Implementation</div>
-            <div class="text-xs text-neutral-500">Claude Code migrating 388 color refs</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
-              <span class="text-xs text-neutral-400">~60%</span>
-            </div>
-          </div>
-          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
             <div class="text-sm font-medium text-neutral-900 mb-1">Fix Brief → Calendar flow</div>
             <div class="text-xs text-neutral-500">Add "Schedule to Calendar" on approved assets</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
-            </div>
-          </div>
-          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Build verification</div>
-            <div class="text-xs text-neutral-500">Run npm build after design system changes</div>
             <div class="mt-2 flex items-center gap-2">
               <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
             </div>
@@ -149,9 +134,19 @@
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">Done</h2>
-          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">7</span>
+          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">9</span>
         </div>
         <div class="space-y-3" id="col-done">
+          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Design System Migration</div>
+            <div class="text-xs text-neutral-500">79 files, brand-gold → accent, brand-black → neutral-900</div>
+            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
+          </div>
+          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Build verification</div>
+            <div class="text-xs text-neutral-500">npm build clean after design system changes</div>
+            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
+          </div>
           <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
             <div class="text-sm font-medium text-neutral-900 mb-1">Identity setup</div>
             <div class="text-xs text-neutral-500">SOUL.md, IDENTITY.md, USER.md</div>
@@ -188,36 +183,36 @@
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
           <span class="text-emerald-500">●</span>
           <div>
-            <div class="text-neutral-900">Asset cards updated to new design system</div>
+            <div class="text-neutral-900">Design system migration complete — 79 files, build clean</div>
+            <div class="text-xs text-neutral-500">Just now</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
+          <span class="text-emerald-500">●</span>
+          <div>
+            <div class="text-neutral-900">Pushed to GitHub: commit e3f6615</div>
             <div class="text-xs text-neutral-500">2 minutes ago</div>
           </div>
         </div>
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
           <span class="text-emerald-500">●</span>
           <div>
-            <div class="text-neutral-900">ClientNav tabs migrated to accent color</div>
-            <div class="text-xs text-neutral-500">3 minutes ago</div>
+            <div class="text-neutral-900">Video tab reviewed — confirmed fully integrated, not overstatement</div>
+            <div class="text-xs text-neutral-500">10 minutes ago</div>
           </div>
         </div>
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
           <span class="text-emerald-500">●</span>
           <div>
-            <div class="text-neutral-900">Calendar components updated (35 replacements)</div>
-            <div class="text-xs text-neutral-500">3 minutes ago</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
-          <span class="text-emerald-500">●</span>
-          <div>
-            <div class="text-neutral-900">Sales strategy doc created</div>
-            <div class="text-xs text-neutral-500">5 minutes ago</div>
+            <div class="text-neutral-900">Sales strategy doc created (SALES_STRATEGY.md)</div>
+            <div class="text-xs text-neutral-500">20 minutes ago</div>
           </div>
         </div>
         <div class="flex items-start gap-3">
           <span class="text-accent">●</span>
           <div>
-            <div class="text-neutral-900">Claude Code processing 388 color migrations</div>
-            <div class="text-xs text-neutral-500">In progress</div>
+            <div class="text-neutral-900">Brief → Calendar flow</div>
+            <div class="text-xs text-neutral-500">Up next</div>
           </div>
         </div>
       </div>
