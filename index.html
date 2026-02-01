@@ -45,11 +45,11 @@
     <div class="grid grid-cols-4 gap-4 mb-8">
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Active Tasks</div>
-        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">1</div>
+        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">2</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Completed Today</div>
-        <div class="text-2xl font-semibold text-emerald-600" id="stat-completed">10</div>
+        <div class="text-2xl font-semibold text-emerald-600" id="stat-completed">9</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">In Review</div>
@@ -91,9 +91,23 @@
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">In Progress</h2>
-          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">1</span>
+          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">3</span>
         </div>
         <div class="space-y-3" id="col-progress">
+          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
+            <div class="text-sm font-medium text-neutral-900 mb-1">SEO Strategy</div>
+            <div class="text-xs text-neutral-500">Comprehensive SEO plan for lead generation</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Growth</span>
+            </div>
+          </div>
+          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Brief → Calendar Flow</div>
+            <div class="text-xs text-neutral-500">Schedule button on approved concepts</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
+            </div>
+          </div>
           <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
             <div class="text-sm font-medium text-neutral-900 mb-1">Video PRD Phase 1</div>
             <div class="text-xs text-neutral-500">Blocked: Waiting for Replicate API token</div>
@@ -143,14 +157,9 @@
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">Done</h2>
-          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">10</span>
+          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">9</span>
         </div>
         <div class="space-y-3" id="col-done">
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Brief → Calendar Flow</div>
-            <div class="text-xs text-neutral-500">Schedule button on approved concepts, auto-opens post editor</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
           <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
             <div class="text-sm font-medium text-neutral-900 mb-1">Design System Migration</div>
             <div class="text-xs text-neutral-500">79 files, brand-gold → accent, brand-black → neutral-900</div>
@@ -197,43 +206,43 @@
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
           <span class="text-accent">●</span>
           <div>
-            <div class="text-neutral-900">Phase 1 executing — 3 new models, batch API, upscaling, queue UI</div>
+            <div class="text-neutral-900">SEO strategy plan — comprehensive optimization for lead gen</div>
             <div class="text-xs text-neutral-500">Just now</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
+          <span class="text-accent">●</span>
+          <div>
+            <div class="text-neutral-900">Brief → Calendar flow — Schedule button on approved concepts</div>
+            <div class="text-xs text-neutral-500">In progress</div>
           </div>
         </div>
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
           <span class="text-amber-500">●</span>
           <div>
-            <div class="text-neutral-900">VIDEO_PRD.md created — 8-week roadmap, Krea-inspired</div>
-            <div class="text-xs text-neutral-500">5 minutes ago</div>
+            <div class="text-neutral-900">Phase 1 executing — batch API, upscaling, queue UI (blocked on token)</div>
+            <div class="text-xs text-neutral-500">Waiting for Replicate token</div>
           </div>
         </div>
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
           <span class="text-emerald-500">●</span>
           <div>
             <div class="text-neutral-900">Design system deployed to dashboard.vaelcreative.com</div>
-            <div class="text-xs text-neutral-500">15 minutes ago</div>
+            <div class="text-xs text-neutral-500">Earlier today</div>
           </div>
         </div>
         <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
           <span class="text-emerald-500">●</span>
           <div>
-            <div class="text-neutral-900">Video tab reviewed — confirmed fully integrated, not overstatement</div>
-            <div class="text-xs text-neutral-500">10 minutes ago</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
-          <span class="text-emerald-500">●</span>
-          <div>
-            <div class="text-neutral-900">Sales strategy doc created (SALES_STRATEGY.md)</div>
-            <div class="text-xs text-neutral-500">20 minutes ago</div>
+            <div class="text-neutral-900">VIDEO_PRD.md created — 8-week roadmap, Krea-inspired</div>
+            <div class="text-xs text-neutral-500">Earlier today</div>
           </div>
         </div>
         <div class="flex items-start gap-3">
-          <span class="text-accent">●</span>
+          <span class="text-emerald-500">●</span>
           <div>
-            <div class="text-neutral-900">Brief → Calendar flow</div>
-            <div class="text-xs text-neutral-500">Up next</div>
+            <div class="text-neutral-900">Sales strategy doc created (SALES_STRATEGY.md)</div>
+            <div class="text-xs text-neutral-500">Earlier today</div>
           </div>
         </div>
       </div>
