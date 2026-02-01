@@ -45,11 +45,11 @@
     <div class="grid grid-cols-4 gap-4 mb-8">
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Active Tasks</div>
-        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">2</div>
+        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">1</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Completed Today</div>
-        <div class="text-2xl font-semibold text-emerald-600" id="stat-completed">9</div>
+        <div class="text-2xl font-semibold text-emerald-600" id="stat-completed">10</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">In Review</div>
@@ -57,7 +57,7 @@
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="text-sm text-neutral-500 mb-1">Blocked</div>
-        <div class="text-2xl font-semibold text-red-600" id="stat-blocked">0</div>
+        <div class="text-2xl font-semibold text-red-600" id="stat-blocked">1</div>
       </div>
     </div>
 
@@ -91,22 +91,15 @@
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">In Progress</h2>
-          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">2</span>
+          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">1</span>
         </div>
         <div class="space-y-3" id="col-progress">
           <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
             <div class="text-sm font-medium text-neutral-900 mb-1">Video PRD Phase 1</div>
-            <div class="text-xs text-neutral-500">Models + Batch + Upscale + Queue UI</div>
+            <div class="text-xs text-neutral-500">Blocked: Waiting for Replicate API token</div>
             <div class="mt-2 flex items-center gap-2">
               <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
-              <span class="text-xs text-accent">~70%</span>
-            </div>
-          </div>
-          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Fix Brief → Calendar flow</div>
-            <div class="text-xs text-neutral-500">Add "Schedule to Calendar" on approved assets</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
+              <span class="text-xs text-red-500">Blocked</span>
             </div>
           </div>
         </div>
@@ -150,9 +143,14 @@
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">Done</h2>
-          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">9</span>
+          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">10</span>
         </div>
         <div class="space-y-3" id="col-done">
+          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+            <div class="text-sm font-medium text-neutral-900 mb-1">Brief → Calendar Flow</div>
+            <div class="text-xs text-neutral-500">Schedule button on approved concepts, auto-opens post editor</div>
+            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
+          </div>
           <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
             <div class="text-sm font-medium text-neutral-900 mb-1">Design System Migration</div>
             <div class="text-xs text-neutral-500">79 files, brand-gold → accent, brand-black → neutral-900</div>
