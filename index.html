@@ -23,7 +23,6 @@
   </style>
 </head>
 <body class="bg-neutral-50 min-h-screen">
-  <!-- Header -->
   <header class="bg-white border-b border-neutral-200 px-6 py-4">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -31,273 +30,169 @@
         <h1 class="text-xl font-semibold text-neutral-900">Moto Dashboard</h1>
       </div>
       <div class="flex items-center gap-4 text-sm text-neutral-500">
-        <span id="last-updated">Last updated: --</span>
-        <button onclick="refreshData()" class="px-3 py-1.5 bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors">
+        <span id="last-updated">Loading...</span>
+        <button onclick="loadIssues()" class="px-3 py-1.5 bg-accent text-white rounded-lg hover:bg-accent-hover transition-colors">
           Refresh
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
   <main class="max-w-7xl mx-auto px-6 py-8">
-    <!-- Stats Row -->
     <div class="grid grid-cols-4 gap-4 mb-8">
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
-        <div class="text-sm text-neutral-500 mb-1">Active Tasks</div>
-        <div class="text-2xl font-semibold text-neutral-900" id="stat-active">2</div>
+        <div class="text-sm text-neutral-500 mb-1">Backlog</div>
+        <div class="text-2xl font-semibold text-neutral-900" id="stat-backlog">-</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
-        <div class="text-sm text-neutral-500 mb-1">Completed Today</div>
-        <div class="text-2xl font-semibold text-emerald-600" id="stat-completed">10</div>
+        <div class="text-sm text-neutral-500 mb-1">In Progress</div>
+        <div class="text-2xl font-semibold text-accent" id="stat-progress">-</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
-        <div class="text-sm text-neutral-500 mb-1">In Review</div>
-        <div class="text-2xl font-semibold text-amber-600" id="stat-review">3</div>
+        <div class="text-sm text-neutral-500 mb-1">Review</div>
+        <div class="text-2xl font-semibold text-amber-600" id="stat-review">-</div>
       </div>
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
-        <div class="text-sm text-neutral-500 mb-1">Blocked</div>
-        <div class="text-2xl font-semibold text-red-600" id="stat-blocked">1</div>
+        <div class="text-sm text-neutral-500 mb-1">Done</div>
+        <div class="text-2xl font-semibold text-emerald-600" id="stat-done">-</div>
       </div>
     </div>
 
-    <!-- Kanban Board -->
-    <div class="grid grid-cols-4 gap-6">
-      <!-- Backlog -->
+    <div class="grid grid-cols-4 gap-6" id="kanban">
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">Backlog</h2>
-          <span class="text-xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded-full" id="count-backlog">2</span>
+          <span class="text-xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded-full" id="count-backlog">0</span>
         </div>
-        <div class="space-y-3" id="col-backlog">
-          <div class="p-3 bg-neutral-50 rounded-lg border border-neutral-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Demo video</div>
-            <div class="text-xs text-neutral-500">Record 2-min async demo for prospects</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Sales</span>
-            </div>
-          </div>
-          <div class="p-3 bg-neutral-50 rounded-lg border border-neutral-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">AI Marketing Pillar Page</div>
-            <div class="text-xs text-neutral-500">Complete guide to AI marketing for SMBs</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Content</span>
-            </div>
-          </div>
-        </div>
+        <div class="space-y-3" id="col-backlog"></div>
       </div>
 
-      <!-- In Progress -->
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">In Progress</h2>
-          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">2</span>
+          <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full" id="count-progress">0</span>
         </div>
-        <div class="space-y-3" id="col-progress">
-          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Automated Funnel</div>
-            <div class="text-xs text-neutral-500">Lead scoring, email sequences, AI proposals built</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Growth</span>
-              <span class="text-xs text-emerald-600">Core complete</span>
-            </div>
-          </div>
-          <div class="p-3 bg-accent/5 rounded-lg border border-accent/20">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Video PRD Phase 1</div>
-            <div class="text-xs text-neutral-500">Blocked: Waiting for Replicate API token</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
-              <span class="text-xs text-red-500">Blocked</span>
-            </div>
-          </div>
-        </div>
+        <div class="space-y-3" id="col-progress"></div>
       </div>
 
-      <!-- Review -->
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">Review</h2>
-          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full" id="count-review">8</span>
+          <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full" id="count-review">0</span>
         </div>
-        <div class="space-y-3" id="col-review">
-          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Blog Post #3</div>
-            <div class="text-xs text-neutral-500">SMB Marketing Budget Guide</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Content</span>
-              <span class="text-xs text-amber-600">Awaiting B</span>
-            </div>
-          </div>
-          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Blog Post #2</div>
-            <div class="text-xs text-neutral-500">AI Marketing: What Actually Works in 2026</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Content</span>
-              <span class="text-xs text-amber-600">Awaiting B</span>
-            </div>
-          </div>
-          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Blog Post #1</div>
-            <div class="text-xs text-neutral-500">5 Signs Your SMB Needs a Marketing Agency</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Content</span>
-              <span class="text-xs text-amber-600">Awaiting B</span>
-            </div>
-          </div>
-          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Sales One-Pager</div>
-            <div class="text-xs text-neutral-500">HTML + Markdown, Mac's contact info</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Sales</span>
-              <span class="text-xs text-amber-600">Awaiting B</span>
-            </div>
-          </div>
-          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">SEO_STRATEGY.md</div>
-            <div class="text-xs text-neutral-500">90-day SEO plan — keywords, content, links, technical</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">Growth</span>
-              <span class="text-xs text-amber-600">Awaiting B</span>
-            </div>
-          </div>
-          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">VIDEO_PRD.md</div>
-            <div class="text-xs text-neutral-500">8-week video generation roadmap (Krea-inspired)</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
-              <span class="text-xs text-amber-600">Awaiting B</span>
-            </div>
-          </div>
-          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">DESIGN_SYSTEM.md</div>
-            <div class="text-xs text-neutral-500">Design tokens spec ready for review</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded">Product</span>
-              <span class="text-xs text-amber-600">Awaiting B</span>
-            </div>
-          </div>
-          <div class="p-3 bg-amber-50 rounded-lg border border-amber-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">SALES_STRATEGY.md</div>
-            <div class="text-xs text-neutral-500">$1M ARR playbook ready for review</div>
-            <div class="mt-2 flex items-center gap-2">
-              <span class="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Sales</span>
-              <span class="text-xs text-amber-600">Awaiting B</span>
-            </div>
-          </div>
-        </div>
+        <div class="space-y-3" id="col-review"></div>
       </div>
 
-      <!-- Done -->
       <div class="bg-white rounded-xl border border-neutral-200 p-4">
         <div class="flex items-center justify-between mb-4">
           <h2 class="font-semibold text-neutral-900">Done</h2>
-          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">10</span>
+          <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full" id="count-done">0</span>
         </div>
-        <div class="space-y-3" id="col-done">
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Brief → Calendar Flow</div>
-            <div class="text-xs text-neutral-500">Schedule button on approved concepts</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Design System Migration</div>
-            <div class="text-xs text-neutral-500">79 files, brand-gold → accent, brand-black → neutral-900</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Build verification</div>
-            <div class="text-xs text-neutral-500">npm build clean after design system changes</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Identity setup</div>
-            <div class="text-xs text-neutral-500">SOUL.md, IDENTITY.md, USER.md</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">GitHub access</div>
-            <div class="text-xs text-neutral-500">Clawdomoto account configured</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">ElevenLabs TTS</div>
-            <div class="text-xs text-neutral-500">Voice configured and tested</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Platform audit</div>
-            <div class="text-xs text-neutral-500">Vael dashboard codebase review</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-100">
-            <div class="text-sm font-medium text-neutral-900 mb-1">Sub-agent deployment</div>
-            <div class="text-xs text-neutral-500">5 agents: NavBar, Buttons, Calendar, ClientNav, Cards</div>
-            <div class="mt-2 text-xs text-emerald-600">✓ Completed</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Activity Log -->
-    <div class="mt-8 bg-white rounded-xl border border-neutral-200 p-6">
-      <h2 class="font-semibold text-neutral-900 mb-4">Recent Activity</h2>
-      <div class="space-y-3 text-sm" id="activity-log">
-        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
-          <span class="text-accent">●</span>
-          <div>
-            <div class="text-neutral-900">Automated funnel — pricing, free audit, checkout API</div>
-            <div class="text-xs text-neutral-500">Just now</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
-          <span class="text-emerald-500">●</span>
-          <div>
-            <div class="text-neutral-900">AGENTIC_AGENCY.md — roadmap to #1 agentic agency</div>
-            <div class="text-xs text-neutral-500">5 min ago</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
-          <span class="text-amber-500">●</span>
-          <div>
-            <div class="text-neutral-900">Phase 1 executing — batch API, upscaling, queue UI (blocked on token)</div>
-            <div class="text-xs text-neutral-500">Waiting for Replicate token</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
-          <span class="text-emerald-500">●</span>
-          <div>
-            <div class="text-neutral-900">Design system deployed to dashboard.vaelcreative.com</div>
-            <div class="text-xs text-neutral-500">Earlier today</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3 pb-3 border-b border-neutral-100">
-          <span class="text-emerald-500">●</span>
-          <div>
-            <div class="text-neutral-900">VIDEO_PRD.md created — 8-week roadmap, Krea-inspired</div>
-            <div class="text-xs text-neutral-500">Earlier today</div>
-          </div>
-        </div>
-        <div class="flex items-start gap-3">
-          <span class="text-emerald-500">●</span>
-          <div>
-            <div class="text-neutral-900">Sales strategy doc created (SALES_STRATEGY.md)</div>
-            <div class="text-xs text-neutral-500">Earlier today</div>
-          </div>
-        </div>
+        <div class="space-y-3" id="col-done"></div>
       </div>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="border-t border-neutral-200 mt-12 py-6 text-center text-sm text-neutral-500">
-    <p>Moto 🤖 — Chief Product & Technology Officer, Vael Creative</p>
+    <p>Moto 🤖 — Vael Creative</p>
   </footer>
 
   <script>
-    function refreshData() {
-      document.getElementById('last-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+    const REPO = 'Clawdomoto/moto-dashboard';
+    const API = `https://api.github.com/repos/${REPO}/issues?state=all&per_page=100`;
+
+    const categoryColors = {
+      'Sales': 'bg-blue-100 text-blue-700',
+      'Content': 'bg-green-100 text-green-700',
+      'Growth': 'bg-teal-100 text-teal-700',
+      'Product': 'bg-purple-100 text-purple-700',
+    };
+
+    const statusMap = {
+      'backlog': { col: 'col-backlog', count: 'count-backlog', stat: 'stat-backlog', bg: 'bg-neutral-50 border-neutral-100' },
+      'in-progress': { col: 'col-progress', count: 'count-progress', stat: 'stat-progress', bg: 'bg-accent/5 border-accent/20' },
+      'review': { col: 'col-review', count: 'count-review', stat: 'stat-review', bg: 'bg-amber-50 border-amber-100' },
+      'done': { col: 'col-done', count: 'count-done', stat: 'stat-done', bg: 'bg-emerald-50 border-emerald-100' },
+    };
+
+    function getStatus(labels) {
+      for (const l of labels) {
+        if (statusMap[l.name]) return l.name;
+      }
+      return 'backlog';
     }
-    refreshData();
+
+    function getCategory(labels) {
+      for (const l of labels) {
+        if (categoryColors[l.name]) return l.name;
+      }
+      return null;
+    }
+
+    function createCard(issue) {
+      const status = getStatus(issue.labels);
+      const category = getCategory(issue.labels);
+      const blocked = issue.labels.some(l => l.name === 'blocked');
+      const config = statusMap[status];
+
+      const card = document.createElement('div');
+      card.className = `p-3 rounded-lg border ${config.bg}`;
+      
+      let html = `<div class="text-sm font-medium text-neutral-900 mb-1">${issue.title}</div>`;
+      if (issue.body) {
+        const desc = issue.body.length > 80 ? issue.body.substring(0, 80) + '...' : issue.body;
+        html += `<div class="text-xs text-neutral-500 mb-2">${desc}</div>`;
+      }
+      html += '<div class="flex items-center gap-2 flex-wrap">';
+      if (category) {
+        html += `<span class="text-xs ${categoryColors[category]} px-2 py-0.5 rounded">${category}</span>`;
+      }
+      if (blocked) {
+        html += `<span class="text-xs text-red-500">Blocked</span>`;
+      }
+      if (status === 'done') {
+        html += `<span class="text-xs text-emerald-600">✓ Completed</span>`;
+      }
+      html += '</div>';
+      
+      card.innerHTML = html;
+      return card;
+    }
+
+    async function loadIssues() {
+      try {
+        const res = await fetch(API);
+        const issues = await res.json();
+
+        // Clear columns
+        Object.values(statusMap).forEach(c => {
+          document.getElementById(c.col).innerHTML = '';
+        });
+
+        const counts = { backlog: 0, 'in-progress': 0, review: 0, done: 0 };
+
+        issues.forEach(issue => {
+          if (issue.pull_request) return; // skip PRs
+          const status = getStatus(issue.labels);
+          counts[status]++;
+          const col = document.getElementById(statusMap[status].col);
+          col.appendChild(createCard(issue));
+        });
+
+        // Update counts
+        Object.keys(counts).forEach(status => {
+          document.getElementById(statusMap[status].count).textContent = counts[status];
+          document.getElementById(statusMap[status].stat).textContent = counts[status];
+        });
+
+        document.getElementById('last-updated').textContent = 'Updated: ' + new Date().toLocaleTimeString();
+      } catch (err) {
+        console.error('Failed to load issues:', err);
+        document.getElementById('last-updated').textContent = 'Error loading data';
+      }
+    }
+
+    loadIssues();
   </script>
 </body>
 </html>
