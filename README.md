@@ -1,20 +1,41 @@
-# Moto Dashboard
+# Mission Control 🦞
 
-A simple kanban-style dashboard to monitor Moto's activity.
-
-🤖 **Moto** — Chief Product & Technology Officer, Vael Creative
-
-## Live
-
-Deploy to GitHub Pages or any static hosting.
+Real-time dashboard for OpenClaw agent activity at **dashboard.vaelcreative.com**
 
 ## Features
 
-- Kanban board with Backlog, In Progress, Review, Done columns
-- Stats overview
-- Activity log
-- Clean, minimal design aligned with Vael brand
+- **📊 Activity Feed** — Real-time log of agent actions from memory files
+- **📅 Calendar View** — Scheduled tasks and cron jobs visualized
+- **🔍 Global Search** — Full-text search across workspace documents
 
-## Local Development
+## Stack
 
-Just open `index.html` in a browser.
+- NextJS 14 (App Router)
+- Tailwind CSS
+- TypeScript
+
+## Development
+
+```bash
+npm install
+npm run dev
+# http://localhost:3000
+```
+
+## Deployment
+
+Deployed via Vercel to dashboard.vaelcreative.com
+
+```bash
+vercel --prod
+```
+
+## API Routes
+
+- `GET /api/activities` — Parsed activities from memory files
+- `GET /api/cron` — Cron jobs from OpenClaw CLI
+- `GET /api/search?q=query` — Workspace search
+
+---
+
+*Vael Creative — Human-curated, AI-accelerated*
